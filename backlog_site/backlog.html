@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Backlog</h1>
+    <button id="logoutBtn">Logout</button>
+    <script>
+        var button = document.getElementById("logoutBtn");
+        button.addEventListener("click", logoutBtnClicked);
+        
+        function logoutBtnClicked() {
+            //document.cookie = "username" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            //document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie = "username=''; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+            window.location="../index.html";
+        }
+    </script>
+</body>
+</html>

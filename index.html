@@ -12,8 +12,7 @@
 
 		<!-- Custom Stylesheet -->
 		<link rel="stylesheet" href="css/style.css">
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
 		<script type="text/javascript" src="javascript/login.js"></script>
 	</head>
@@ -21,7 +20,7 @@
 	<body>
 		<div class="container">
 			<div class="top">
-				<h1 id="title" class="hidden"><span id="logo"><b>Product backlog</b></h1>
+				<h1 id="title" class="hidden"><span id="logo"><b>Product backlog</b></span></h1>
 			</div>
 			<div class="login-box animated fadeInUp">
 				<div class="box-header">
@@ -29,13 +28,15 @@
 				</div>
 				<label for="username">Username</label>
 				<br/>
-				<input type="text" id="username">
+				<input type="text" id="username" autofocus onkeypress="if (event.keyCode == 13)
+                        document.getElementById('loginBtn').click()">
 				<br/>
 				<label for="password">Password</label>
 				<br/>
-				<input type="password" id="password">
+				<input type="password" id="password" onkeypress="if (event.keyCode == 13)
+                        document.getElementById('loginBtn').click()">
 				<br/>
-				<button type="submit">Sign In</button>
+				<button id="loginBtn">Sign In</button>
 				<br/>
 			</div>
 		</div>
