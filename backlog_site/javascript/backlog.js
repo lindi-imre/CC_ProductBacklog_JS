@@ -65,14 +65,19 @@ $(document).ready(function () {
 
         var table = document.getElementById("backlogsTable");
         var row = table.insertRow(rowNumber);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(2);
-        cell1.innerHTML = rowNumber - 1;
-        cell2.innerHTML = titleText;
-        cell3.innerHTML = selectedText;
-        cell4.innerHTML = commentText;
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
+
+        var priority = document.getElementById("backlog-priority").value;
+
+        cell0.innerHTML = rowNumber - 1;
+        cell1.innerHTML = titleText;
+        cell2.innerHTML = selectedText;
+        cell3.innerHTML = commentText;
+        cell4.innerHTML = priority;
 
         if ((rowNumber % 2) != 0) {
             row.classList.add('even');
