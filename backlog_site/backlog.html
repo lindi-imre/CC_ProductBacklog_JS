@@ -3,20 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/backlog.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="javascript/backlog.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <h1>Backlog</h1>
-    <button id="logoutBtn">Logout</button>
-    <script>
-        var button = document.getElementById("logoutBtn");
-        button.addEventListener("click", logoutBtnClicked);
-        
-        function logoutBtnClicked() {
-            //document.cookie = "username" + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-            //document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie = "username=''; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-            window.location="../index.html";
-        }
-    </script>
+    <div id="header">
+        <div id="backlog"><h1>Backlog</h1></div>
+        <div>
+            <h3 id="username"></h3>
+            <button id="logoutBtn" type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-log-out"></span> Log out
+            </button>
+        </div>
+    </div>
+
+    <div align="center">
+        <table cellspacing='0' id="backlogsTable"> <!-- cellspacing='0' is important, must stay -->
+            <tr><th>Backlog items</th><th></th><th></th><th></th>
+                <th align="right"><button type="button" id="addBtn" class="btn btn-info" data-toggle="modal" data-target="#myModal">
+                    Add new item</button></th></tr>
+
+            <tr><th>Order</th><th>Title</th><th>State</th><th>Effort</th><th>Priority</th></tr><!-- Table Header -->
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add new backlog item</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="backlogTitle">
+                    <br><br>
+                    <h4 class="modal-title">Effort:</h4>
+                    <select id="select">
+                        <option value="ToDo">To Do</option>
+                        <option value="InProgress">In progress</option>
+                        <option value="Done">Done</option>
+                    </select>
+                    <br><br>
+                    <h4 class="modal-title">Priority:</h4>
+                    <input type="text" id="backlog-priority">
+                    <br><br>
+                    <textarea id="backlog-info"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button id="backlogAddBtn" type="button" class="btn btn-info" data-dismiss="modal">Add</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
