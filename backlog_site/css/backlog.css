@@ -34,8 +34,8 @@ table {border-spacing: 0; } /* IMPORTANT, I REMOVED border-collapse: collapse; F
 body{
     font-family:Arial, Helvetica, sans-serif;
     background: url(background.jpg);
-    margin:0 auto;
-    width:520px;
+    margin: 0;
+    width: auto;
 }
 
 #header {
@@ -95,6 +95,8 @@ table a:hover {
     text-decoration:underline;
 }
 table {
+    width: 80%;
+    word-wrap: break-word;
     font-family:Arial, Helvetica, sans-serif;
     color:#666;
     font-size:12px;
@@ -113,17 +115,22 @@ table {
 }
 table th {
     padding:21px 25px 22px 25px;
-    border-top:1px solid #fafafa;
     border-bottom:1px solid #e0e0e0;
-
     background: #ededed;
     background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb));
     background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
 }
 table th:first-child{
     text-align: left;
-    padding-left:20px;
+    padding-left:10px;
+    width: 3%;
 }
+
+table th:last-child {
+    width: 4%;
+}
+
+
 table tr:first-child th:first-child{
     -moz-border-radius-topleft:3px;
     -webkit-border-top-left-radius:3px;
@@ -135,12 +142,13 @@ table tr:first-child th:last-child{
     border-top-right-radius:3px;
 }
 table tr{
-    text-align: center;
+    text-align: left;
     padding-left:20px;
+    word-wrap:break-word;
 }
 table tr td:first-child{
     text-align: left;
-    padding-left:20px;
+    padding-left: 20px;
     border-left: 0;
 }
 table tr td {
@@ -184,4 +192,8 @@ table tr:hover td{
 
 .modal-header {
     background: url(background.jpg);
+}
+
+#user {
+
 }
