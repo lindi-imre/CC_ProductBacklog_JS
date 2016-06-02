@@ -30,7 +30,7 @@
         </table>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal new backlog item -->
     <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -38,10 +38,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add new backlog item</h4>
+                    <h4 class="modal-title" id="modalTitle">Add new backlog item</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id="backlogTitle">
+                    <h4 class="modal-title">Title:</h4>
+                    <input type="text" id="backlogTitle" autofocus>
                     <br><br>
                     <h4 class="modal-title">Effort:</h4>
                     <select id="select">
@@ -53,6 +54,7 @@
                     <h4 class="modal-title">Priority:</h4>
                     <input type="text" id="backlogPriority">
                     <br><br>
+                    <h4 class="modal-title">State:</h4>
                     <textarea id="backlog-info"></textarea>
                 </div>
                 <div class="modal-footer">

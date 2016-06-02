@@ -77,6 +77,11 @@ $(document).ready(function () {
         select.value = "ToDo";
         var textArea = document.getElementById("backlog-info");
         textArea.value = "";
+        var backlogAddButton = document.getElementById("backlogAddBtn");
+        backlogAddButton.innerHTML = "Add";
+        backlogAddButton.disabled = true;
+        var modalTitle = document.getElementById("modalTitle");
+        modalTitle.innerHTML = "Add new backlog item";
     }
 
     var addBacklogButton = document.getElementById("backlogAddBtn");
@@ -85,9 +90,16 @@ $(document).ready(function () {
 
 });
 
+var actualRow;
+
 function editBacklogItem(element) {
     $('#myModal').modal('toggle');
+    var backlogAddButton = document.getElementById("backlogAddBtn");
+    backlogAddButton.innerHTML = "Save";
+    var modalTitle = document.getElementById("modalTitle");
+
     var selectedRowIndex = (element.rowIndex);
+    actualRow = selectedRowIndex;
     var cells = document.getElementById("backlogsTable").rows[selectedRowIndex].cells.length;
 
     var cellsContent = [];
@@ -96,41 +108,61 @@ function editBacklogItem(element) {
     {
         cellsContent[i] = document.getElementById("backlogsTable").rows[selectedRowIndex].cells[i].innerHTML;
     }
+
+    modalTitle.innerHTML = "(" + cellsContent[0] + ")" + " Edit backlog item";
     document.getElementById("backlogTitle").value = cellsContent[1];
-    document.getElementById("select").value = cellsContent[2];
-    document.getElementById("backlogPriority").value = cellsContent[3];
+    document.getElementById("select").value = cellsContent[3];
+    document.getElementById("backlogPriority").value = cellsContent[2];
     document.getElementById("backlog-info").value = cellsContent[4];
 }
 
-function addBacklogItemToTable() {
-    var select = document.getElementById("select");
-    var selectedText = select.options[select.selectedIndex].text;
-
-    var titleText = document.getElementById("backlogTitle").value;
-    var commentText = document.getElementById("backlog-info").value;
-    var rowNumber = document.getElementById("backlogsTable").rows.length;
-    var priority = document.getElementById("backlogPriority").value;
-
+function saveChanges() {
     var table = document.getElementById("backlogsTable");
-    var row = table.insertRow(rowNumber);
 
-    var cell0 = row.insertCell(0);
-    var cell1 = row.insertCell(1);
-    var cell2 = row.insertCell(2);
-    var cell3 = row.insertCell(3);
-    var cell4 = row.insertCell(4);
+    var cells = document.getElementById("backlogsTable").rows[actualRow].cells.length;
+    table.rows[actualRow].cells[1].innerHTML = document.getElementById("backlogTitle").value;
+    table.rows[actualRow].cells[2].innerHTML = document.getElementById("backlogPriority").value;
+    table.rows[actualRow].cells[3].innerHTML = document.getElementById("select").value;
+    table.rows[actualRow].cells[4].innerHTML = document.getElementById("backlog-info").value;
+
+}
+
+function addBacklogItemToTable() {
+    var backlogAddButton = document.getElementById("backlogAddBtn");
+    if(backlogAddButton.innerHTML == "Add") {
+        var select = document.getElementById("select");
+        var selectedText = select.options[select.selectedIndex].text;
+
+        var titleText = document.getElementById("backlogTitle").value;
+        var commentText = document.getElementById("backlog-info").value;
+        var rowNumber = document.getElementById("backlogsTable").rows.length;
+        var priority = document.getElementById("backlogPriority").value;
+
+        var table = document.getElementById("backlogsTable");
+        var row = table.insertRow(rowNumber);
+
+        var cell0 = row.insertCell(0);
+        var cell1 = row.insertCell(1);
+        var cell2 = row.insertCell(2);
+        var cell3 = row.insertCell(3);
+        var cell4 = row.insertCell(4);
 
 
-    cell0.innerHTML = rowNumber - 1;
-    cell1.innerHTML = titleText;
-    cell2.innerHTML = selectedText;
-    cell3.innerHTML = commentText;
-    cell4.innerHTML = priority;
+        cell0.innerHTML = rowNumber - 1;
+        cell1.innerHTML = titleText;
+        cell2.innerHTML = commentText;
+        cell3.innerHTML = selectedText;
+        cell4.innerHTML = priority;
 
-    if ((rowNumber % 2) != 0) {
-        row.classList.add('even');
+        if ((rowNumber % 2) != 0) {
+            row.classList.add('even');
+        }
+
+        row.setAttribute("ondblclick","editBacklogItem(this)");
     }
 
-    row.setAttribute("ondblclick","editBacklogItem(this)");
+    else{
+        saveChanges();
+    }
 
 }
